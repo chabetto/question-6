@@ -13,6 +13,8 @@ public:
     Node(int id);
     // add connection
     void add_connection(int _id, double cost);
+    // get adjacency list
+    map<int,double> get_adjacency_list();
     // print list of connections and cost
     void print_connections();
 protected:

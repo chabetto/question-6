@@ -5,7 +5,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <random>
-#include <ctime> 
+#include <ctime>
+#include<list>
 using namespace std;
 
 #pragma once
@@ -16,7 +17,7 @@ public:
     Graph(int n);
     // add edge between two nodes and its cost
     void add_edge(int node1, int node2, double cost);
-    // check connectivity to store
+    // check connectivity to store using BFS
     bool check_connectivity();
     // initialise random edges
     void initialise_edges();

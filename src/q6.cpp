@@ -9,9 +9,10 @@
 using namespace std;
 
 int main(int argc, char const *argv[]) {
-    Graph graph(5);
+    Graph graph(10);
     graph.initialise_edges();
     graph.print();
-    cout << "THE END" << endl;
+    bool connected = graph.check_connectivity();
+    cout << connected << endl;
     return 0;
 };
