@@ -31,6 +31,10 @@ public:
     void generate_orders();
     // generate shortest paths for each node using Dijksta's (thanks wiki)
     void generate_shortest_paths();
+    // get order list
+    map<int,int> get_order_list();
+    // get shortest_paths
+    vector<vector<int>> get_shortest_paths();
 private:
     // list of nodes
     vector<Node> node_list;

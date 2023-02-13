@@ -30,7 +30,7 @@ void Graph::print_con() {
     }
 }
 void Graph::print_orders() {
-    for (auto const& [key, val] : order_list) { cout << key << ":" << val << endl; }
+    for (auto const& [key, val] : order_list) { cout << "Node: " << key << ". Baskets: " << val << endl; }
 }
 void Graph::print_paths() {
     for (int i = 0; i < shortest_paths.size(); i++) {
@@ -135,3 +135,5 @@ void Graph::generate_shortest_paths() {
         this->shortest_paths.push_back(path);
     }
 }
+map<int,int> Graph::get_order_list() { return order_list; }
+vector<vector<int>> Graph::get_shortest_paths() { return shortest_paths; }
