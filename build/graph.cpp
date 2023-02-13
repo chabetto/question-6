@@ -137,3 +137,16 @@ void Graph::generate_shortest_paths() {
 }
 map<int,int> Graph::get_order_list() { return order_list; }
 vector<vector<int>> Graph::get_shortest_paths() { return shortest_paths; }
+int Graph::remove_order(int index, int basket) { 
+    int cus_basket = order_list[index];
+    if (basket >= cus_basket) {
+        basket -= cus_basket;
+        cout << ", Delivered: " << cus_basket;
+        this->order_list.erase(index); 
+    } else {
+        this->order_list[index] -= basket;
+        cout << ", Delivered: " << basket;
+        basket = 0;
+    }
+    return basket;
+}

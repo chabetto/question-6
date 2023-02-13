@@ -35,6 +35,8 @@ public:
     map<int,int> get_order_list();
     // get shortest_paths
     vector<vector<int>> get_shortest_paths();
+    // remove order
+    int remove_order(int index, int basket);
 private:
     // list of nodes
     vector<Node> node_list;
