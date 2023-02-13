@@ -13,6 +13,8 @@ int main(int argc, char const *argv[]) {
     graph.initialise_edges();
     graph.check_connectivity();
     graph.generate_orders();
-    graph.print_orders();
+    graph.generate_shortest_paths();
+    graph.print_paths();
+    cout << "donezo" << endl;
     return 0;
 };

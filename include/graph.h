@@ -25,8 +25,12 @@ public:
     void print_con();
     // print orders
     void print_orders();
+    // print shortest paths
+    void print_paths();
     // generate orders for each customer and put it in order_list
     void generate_orders();
+    // generate shortest paths for each node using Dijksta's (thanks wiki)
+    void generate_shortest_paths();
 private:
     // list of nodes
     vector<Node> node_list;
@@ -34,4 +38,6 @@ private:
     map<int,int> order_list;
     // number of customers
     int customer_number;
+    // shortest paths to nodes
+    vector<vector<int>> shortest_paths;
 };
