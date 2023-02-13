@@ -43,17 +43,19 @@ void Graph::print_paths() {
 }
 bool Graph::check_connectivity() {
     vector<bool> visited;
-    visited.resize(node_list.size(), false);
-    // queue gives us next vertices to visit
-    list<int> queue;
+    visited.resize(node_list.size(), false); // set every node to not visited
+    list<int> queue; // queue gives us next vertex to visit
     int s = 0; // store is 0
     // mark store as visited and add it to queue
     visited[s] = true;
     queue.push_back(s);
+
     while (!queue.empty()) {
-        s = queue.front();
+        s = queue.front(); // get next node in queue
         queue.pop_front(); // remove from queue
+        // for each neighbour
         for (auto const& [key, val] : node_list[s].get_adjacency_list()) {
+            // if it hasn't been visited add to queue and mark as visited
             if (!visited[key]) {
                 visited[key] = true;
                 queue.push_back(key);
@@ -70,9 +72,10 @@ bool Graph::check_connectivity() {
     return true;
 }
 void Graph::generate_orders() {
+    // for each customer
     for (int i = 1; i <= customer_number; i++) {
-        int n_order = rand() % 3;
-        if (n_order > 0) {
+        int n_order = rand() % 3; // get number in set {0,1,2}
+        if (n_order > 0) { // if customer has basket add order to list
             this->order_list[i] = n_order;
         }
     }
@@ -84,16 +87,17 @@ void Graph::generate_shortest_paths() {
     int max = 100000; // arbitrary large value
 
     for (int i = 0; i < node_list.size(); i++) {
-        dist.push_back(max);
-        prev.push_back(-1);
-        Q.push_back(i);
+        dist.push_back(max); // assume every dist is inf
+        prev.push_back(-1); // set arbitrary prev node
+        Q.push_back(i); // add all nodes to queue
     }
     dist[0] = 0; // set store distance to 0
     
     while (!Q.empty()) {
-        int u = Q[0]; // initialise u and index to the start of the queue
+        // initialise u and index to the start of the queue
+        int u = Q[0];
         int index = 0;
-        double alt; // stores distance value
+        double alt; // stores alternate distance value
         // find smallest distance currently in queue
         for (int i = 0; i < Q.size(); i++) {
             if (dist[Q[i]] < dist[u]) {
@@ -102,11 +106,13 @@ void Graph::generate_shortest_paths() {
             }
         }
         Q.erase(Q.begin() + index); // remove it from queue
+        // get adjacency list
         map<int,double> adj_list = node_list[u].get_adjacency_list();
         for (auto const& [key, val] : adj_list) {
-            for (int i = 0; i < Q.size(); i++) { // check each neighbour if is in queue
+            for (int i = 0; i < Q.size(); i++) { // check if each neighbour is in queue
                 int v = Q[i];
                 if (key == v) {
+                    // see if alt route is shorter than current route
                     alt = dist[u] + val;
                     if (alt < dist[v]) {
                         dist[v] = alt;
@@ -117,6 +123,7 @@ void Graph::generate_shortest_paths() {
             }
         }
     }
+    // work through prev to get paths
     this->shortest_paths.push_back({0});
     for (int i = 1; i < node_list.size(); i++) {
         vector<int> path;
