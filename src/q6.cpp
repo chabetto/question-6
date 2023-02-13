@@ -11,8 +11,8 @@ using namespace std;
 int main(int argc, char const *argv[]) {
     Graph graph(10);
     graph.initialise_edges();
-    graph.print();
-    bool connected = graph.check_connectivity();
-    cout << connected << endl;
+    graph.check_connectivity();
+    graph.generate_orders();
+    graph.print_orders();
     return 0;
 };
